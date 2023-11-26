@@ -28,7 +28,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.set('strictQuery', true);
-mongoose.connect(process.env.MONGOCONNECTION, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGOCONNECTION, { useNewUrlParser: true }).then(()=>
+{
+    console.log("Connecion Established");
+}).catch((e)=>{
+    console.log(e);
+});
 
 
 app.listen(process.env.PORT, () => {
